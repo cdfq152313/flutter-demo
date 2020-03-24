@@ -40,11 +40,19 @@ class _MyHomePageState extends State<MyHomePage> {
     store2 = Store2();
     autorun((_) {
       store1.list;
-      print("Store1: Autorun");
+      print("Store1(no length): Autorun");
+    });
+    autorun((_) {
+      store1.list.length;
+      print("Store1(has length): Autorun");
+    });
+    autorun((_) {
+      store2.list;
+      print("Store2(no length): Autorun");
     });
     autorun((_) {
       store2.list.length;
-      print("Store2: Autorun");
+      print("Store2(has length): Autorun");
     });
   }
 
@@ -77,7 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.all(50),
                 child: Observer(builder: (_) {
                   return ListView.builder(
-                    itemBuilder: (context, index) => store2.list.length != 0 ? Text("NOT EMPTY") : Text("EMPTY"),
+                    itemBuilder: (context, index) => store2.list.length != 0
+                        ? Text("NOT EMPTY")
+                        : Text("EMPTY"),
                     itemCount: 1,
                   );
                 }),
